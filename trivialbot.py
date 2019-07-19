@@ -12,6 +12,8 @@ def sanitize(s) :
     ss = s.upper().replace(" ", "")
     ss = ss.replace("<I>", "").replace("</I>", "")
     ss = ss.replace("-", "").replace(".", "").replace("\'", "")
+    ss = ss.replace("(", "").replace(")", "")
+    ss = ss.replace(",", "").replace("&", "")
     return ss
 
 def get_question(update, context):
