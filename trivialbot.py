@@ -25,11 +25,13 @@ def get_question(update, context):
     current_question = r.json()[0]
     qst = current_question['question']
     answer = current_question['answer']
+    ln = len(answer)
     sanswer = sanitize(answer)
     cat = current_question['category']['title']
-    print(f'Category: {cat}\nQuestion: {qst}\nAnswer: {answer} | {sanswer}\n========')
+    print(f'Category: {cat} ({ln} caracteres)\nQuestion: {qst}\nAnswer: {answer} | {sanswer}\n========')
     
-    context.bot.send_message(chat_id=update.message.chat_id, text=f'{cat}\n================\n{qst}')
+    context.bot.send_message(chat_id=update.message.chat_id,
+        text=f'{cat} ({ln} caracteres)\n==========================\n{qst}')
     
 def print_ranking(update, context):
     msg = 'Ranking Actual\n===========\n'
