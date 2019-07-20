@@ -21,9 +21,6 @@ def sanitize_mild(s):
     ss = ss.replace("&", "and").replace("\'", "")
     ss = re.sub("[^ a-zA-Z]","", ss)
     print(f'Sanitized: {ss}')
-    #ss = ss.replace(",", "").replace(".", "")
-    #ss = ss.replace("(", "").replace(")", "")
-    #ss = ss.replace("-", "")
     return ss
 
 def sanitize_full(s):
@@ -87,7 +84,7 @@ def handle_msg(update, context):
     txt = update.message.text
     if (txt == '!ranking'):
         print_ranking(update, context)
-    elif (txt == '!dame'): #and update.message.from_user.id == TELEGRAM_ADMIN_ID):
+    elif (txt == '!dame' and update.message.from_user.id == TELEGRAM_ADMIN_ID):
         if current_question is not None:
             msg = f'La respuesta era {current_question.mild_answer}'
             context.bot.send_message(chat_id=update.message.chat_id, text=msg)
@@ -124,8 +121,6 @@ def handle_msg(update, context):
 def main():
     global db
     db = redis.StrictRedis(host="localhost", port=6379, db=0, socket_keepalive=True, socket_timeout=300)
-    #if not db.connection_pool._available_connections:
-    #    sys.exit("Failed to connect to Redis. Are you sure it's running?")
 
     updater = Updater(API_TOKEN, use_context=True)
     dp = updater.dispatcher
