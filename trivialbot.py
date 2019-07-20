@@ -7,6 +7,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import redis
 
 API_TOKEN = os.environ.get('TELEGRAM_API_TOKEN')
+TELEGRAM_ADMIN_ID = os.environ.get('TELEGRAM_ADMIN_ID')
 
 def replace_str_index(text,index,replacement):
     return '%s%s%s'%(text[:index],replacement,text[index+1:])
@@ -92,7 +93,7 @@ def handle_msg(update, context):
     txt = update.message.text
     if (txt == '!ranking'):
         print_ranking(update, context)
-    elif (txt == '!dame' and update.message.from_user.id == 470689485):
+    elif (txt == '!dame' and update.message.from_user.id == TELEGRAM_ADMIN_ID):
         get_question(update, context)
     elif (txt == '!pista' and current_question):
         pista = current_question.pista()
