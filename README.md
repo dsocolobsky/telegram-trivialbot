@@ -18,6 +18,6 @@ A Telegram Bot that allows you to play trivia
 - [ ] Cleanup code
 - [ ] Finish README
 - [ ] Add LICENSE
-- [ ] Traslate properly to English
+- [x] Traslate properly to English
 - [ ] Test different APIs and maybe provide several
-- [ ] Time limit for pistas
+- [ ] Time limit for clues
